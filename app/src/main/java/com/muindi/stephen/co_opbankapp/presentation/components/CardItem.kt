@@ -36,6 +36,10 @@ fun CardItem(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
+
+    val startColor = remember(card.id) { getRandomColor() }
+    val endColor = remember(card.id) { getRandomColor() }
+
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -59,10 +63,7 @@ fun CardItem(
                     .weight(1f)
                     .background(
                         brush = Brush.horizontalGradient(
-                            colors = listOf(
-                                getRandomColor(),
-                                getRandomColor()
-                            )
+                            colors = listOf(startColor, endColor)
                         )
                     )
                     .padding(20.dp)

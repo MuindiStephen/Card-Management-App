@@ -150,7 +150,7 @@ fun SuccessState(
         items(cards, key = { it.id }) { card ->
             CardItem(
                 card = card,
-                onClick = { onCardClick(card.id) }
+                onClick = { onCardClick(card.id.toString()) }
             )
         }
     }

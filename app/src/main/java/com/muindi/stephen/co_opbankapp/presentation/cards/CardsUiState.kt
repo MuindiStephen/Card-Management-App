@@ -11,12 +11,3 @@ data class CardsUiState(
     val transactions: List<Transaction> = emptyList(),
     val error: String? = null
 )
-
-data class CardDetailsUiState(
-    val isLoading: Boolean = false,
-    val card: Card? = null,
-    val transactions: List<Transaction> = emptyList(),
-    val userProfile: GetUserResponse? = null,
-    val isBalanceVisible: Boolean = true
-)
-
