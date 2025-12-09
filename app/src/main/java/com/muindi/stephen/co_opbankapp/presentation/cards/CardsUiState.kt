@@ -1,4 +1,4 @@
-package com.muindi.stephen.co_opbankapp.presentation
+package com.muindi.stephen.co_opbankapp.presentation.cards
 
 import com.muindi.stephen.co_opbankapp.data.dto.responses.Card
 import com.muindi.stephen.co_opbankapp.data.dto.responses.GetUserResponse

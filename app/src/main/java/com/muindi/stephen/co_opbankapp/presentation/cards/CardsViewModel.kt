@@ -1,13 +1,12 @@
 package com.muindi.stephen.co_opbankapp.presentation.cards
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.muindi.stephen.co_opbankapp.domain.repository.CardsRepository
 import com.muindi.stephen.co_opbankapp.domain.utils.Resource
-import com.muindi.stephen.co_opbankapp.presentation.CardsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,8 +14,8 @@ import javax.inject.Inject
 class CardsViewModel @Inject constructor(
     private val repository: CardsRepository
 ) : ViewModel() {
-    private val _state = mutableStateOf(CardsUiState())
-    val state: State<CardsUiState> = _state
+    private val _state = MutableStateFlow(CardsUiState())
+    val state = _state.asStateFlow()
 
     /**
      * Loads all cards
@@ -33,57 +32,6 @@ class CardsViewModel @Inject constructor(
                     _state.value = _state.value.copy(
                         isLoading = false,
                         cards = result.value ?: emptyList()
-                    )
-                }
-
-                is Resource.Error -> {
-                    _state.value = _state.value.copy(
-                        isLoading = false,
-                        error = result.message
-                    )
-                }
-
-                else -> Unit
-            }
-        }
-    }
-
-    /**
-     *
-     */
-    fun loadUser() {
-        viewModelScope.launch {
-            _state.value = _state.value.copy(isLoading = true)
-
-            when (val result = repository.getUser()) {
-                is Resource.Data -> {
-                    _state.value = _state.value.copy(
-                        isLoading = false,
-                        user = result.value
-                    )
-                }
-
-                is Resource.Error -> {
-                    _state.value = _state.value.copy(
-                        isLoading = false,
-                        error = result.message
-                    )
-                }
-
-                else -> Unit
-            }
-        }
-    }
-
-    fun fetchTransactions(cardId: String, limit: Int) {
-        viewModelScope.launch {
-            _state.value = _state.value.copy(isLoading = true)
-
-            when (val result = repository.getTransactions(cardId, limit)) {
-                is Resource.Data -> {
-                    _state.value = _state.value.copy(
-                        isLoading = false,
-                        transactions = result.value ?: emptyList()
                     )
                 }
 

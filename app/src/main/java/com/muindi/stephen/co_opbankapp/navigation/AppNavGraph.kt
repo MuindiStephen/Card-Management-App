@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.muindi.stephen.co_opbankapp.presentation.carddetails.CardDetailsScreen
 import com.muindi.stephen.co_opbankapp.presentation.cards.CardsListScreen
+import com.muindi.stephen.co_opbankapp.presentation.userprofile.UserProfileScreen
 
 @Composable
 fun AppNavGraph() {
@@ -22,6 +23,9 @@ fun AppNavGraph() {
             CardsListScreen(
                 onCardClick = { cardId ->
                     navController.navigate("${Screen.CardDetails}/$cardId")
+                },
+                onClickUserProfileIcon = {
+                    navController.navigate(Screen.UserProfile)
                 }
             )
         }
@@ -36,6 +40,12 @@ fun AppNavGraph() {
             CardDetailsScreen(
                 cardId = cardId,
                 onBackClick = { navController.popBackStack() }
+            )
+        }
+
+        composable(Screen.UserProfile) {
+            UserProfileScreen(
+                onBack = { navController.popBackStack() }
             )
         }
     }

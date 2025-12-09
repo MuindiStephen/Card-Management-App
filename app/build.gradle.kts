@@ -98,4 +98,7 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.ktx)
     kapt(libs.androidx.room.compiler)
+
+    // Coil library for image loading
+    implementation(libs.coil.compose)
 }

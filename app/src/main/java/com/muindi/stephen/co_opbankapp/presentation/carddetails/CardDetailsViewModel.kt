@@ -33,16 +33,14 @@ class CardDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true, error = null)
             try {
-                val userResult = repository.getUser()
                 val cardsResult = repository.getCards()
 
-                if (cardsResult is Resource.Data && userResult is Resource.Data
+                if (cardsResult is Resource.Data
                 ) {
                     val card = cardsResult.value.find { it.id == cardId }
                     _uiState.value = _uiState.value.copy(
                         isLoading = false,
-                        card = card,
-                        userName = userResult.value.firstName
+                        card = card
                     )
                 } else {
                     _uiState.value = _uiState.value.copy(
@@ -53,7 +51,7 @@ class CardDetailsViewModel @Inject constructor(
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,
-                    error = e.localizedMessage ?: "Unknown error"
+                    error = e.localizedMessage ?: "Unexpected error occurred."
                 )
             }
         }

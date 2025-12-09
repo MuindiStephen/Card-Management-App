@@ -45,32 +45,25 @@ fun CardDetailsScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-
             when {
-                uiState.isLoading -> {
-                    LoadingScreen()
-                }
+                uiState.isLoading -> LoadingScreen()
 
-                uiState.error != null -> {
-                    ErrorScreen(
-                        message = uiState.error!!,
-                        onRetry = {
-                            viewModel.loadCardDetails(cardId)
-                            viewModel.loadTransactions(cardId)
-                        }
-                    )
-                }
+                uiState.error != null -> ErrorScreen(
+                    message = uiState.error.orEmpty(),
+                    onRetry = {
+                        viewModel.loadCardDetails(cardId)
+                        viewModel.loadTransactions(cardId)
+                    }
+                )
 
-                uiState.card != null -> {
-                    DetailsContent(
-                        card = uiState.card!!,
-                        transactions = uiState.transactions,
-                        isBalanceVisible = uiState.isBalanceVisible,
-                        onToggleVisibility = { viewModel.toggleBalanceVisibility() },
-                        userName = uiState.userName,
-                        onBackClick = onBackClick
-                    )
-                }
+                uiState.card != null -> DetailsContent(
+                    card = uiState.card!!,
+                    transactions = uiState.transactions,
+                    isBalanceVisible = uiState.isBalanceVisible,
+                    onToggleVisibility = { viewModel.toggleBalanceVisibility() },
+                    userName = uiState.userName,
+                    onBackClick = onBackClick
+                )
             }
         }
     }
@@ -159,7 +152,7 @@ private fun HeaderSection(
             }
 
             Text(
-                text = "Hi $userName",
+                text = "Hi Wanjiku",
                 color = Color.White,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
@@ -199,15 +192,15 @@ private fun CardBalanceSection(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+            val formatted = NumberFormat.getNumberInstance(Locale.US).format(balance)
+
             Text(
-                text = if (isVisible) {
-                    "$currency ${NumberFormat.getNumberInstance(Locale.US).format(balance)}"
-                } else "$currency ••••••",
+                text = if (isVisible) "$currency $formatted" else "$currency ••••••",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
             )
 
-            IconButton(onClick = onToggleVisibility, modifier = Modifier.size(24.dp)) {
+            IconButton(onClick = onToggleVisibility) {
                 Icon(
                     imageVector = if (isVisible) Icons.Default.Visibility else Icons.Outlined.VisibilityOff,
                     contentDescription = "Toggle balance"
@@ -227,6 +220,7 @@ private fun TransactionItem(transaction: Transaction) {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
+
         Row(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -235,7 +229,7 @@ private fun TransactionItem(transaction: Transaction) {
                 modifier = Modifier
                     .size(40.dp)
                     .clip(CircleShape)
-                    .background(Color(0xFFFF0000)),
+                    .background(Color(0xFF006B54)),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -245,6 +239,7 @@ private fun TransactionItem(transaction: Transaction) {
                     fontWeight = FontWeight.Bold
                 )
             }
+
             Column {
                 Text(transaction.merchant, fontSize = 16.sp)
                 Text(transaction.date, fontSize = 12.sp, color = Color.Gray)
@@ -258,6 +253,7 @@ private fun TransactionItem(transaction: Transaction) {
         )
     }
 }
+
 
 @Composable
 private fun LoadingScreen() {

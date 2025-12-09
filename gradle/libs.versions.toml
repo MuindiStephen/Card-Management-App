@@ -1,6 +1,7 @@
 [versions]
 accompanistSystemuicontroller = "0.36.0"
 agp = "8.8.2"
+coilCompose = "2.4.0"
 converterGson = "2.9.0"
 converterMoshi = "3.0.0"
 datastorePreferences = "1.2.0"
@@ -48,6 +49,7 @@ androidx-navigation-safe-args-gradle-plugin = { module = "androidx.navigation:na
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompilerVersion" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtxVersion" }
 androidx-ui-util-android = { module = "androidx.compose.ui:ui-util-android", version.ref = "uiUtilAndroid" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "converterMoshi" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
