@@ -9,18 +9,18 @@ import com.muindi.stephen.co_opbankapp.data.local.room.converters.WalletListConv
 @TypeConverters(WalletListConverter::class)
 data class Card(
     val balance: Double,
-    val cardNumber: String,
+    val cardNumber: String? = null,
     val creditLimit: Double,
-    val currency: String,
+    val currency: String ?= null,
     val currentSpend: Double,
     val dueDate: String? = null,
-    val expiryDate: String,
-    val holderName: String,
+    val expiryDate: String? = null,
+    val holderName: String? = null,
     @PrimaryKey val id: String,
-    val linkedAccountName: String,
-    val name: String,
-    val status: String,
-    val type: String,
-    val userId: String,
+    val linkedAccountName: String? = null,
+    val name: String? = null,
+    val status: String? = null,
+    val type: String? = null,
+    val userId: String? = null,
     val wallets: List<Wallet>? = null
 )

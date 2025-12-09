@@ -1,7 +1,9 @@
 package com.muindi.stephen.co_opbankapp.presentation.components
 
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,6 +17,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -37,7 +40,13 @@ fun CardItem(
         modifier = modifier
             .fillMaxWidth()
             .height(220.dp)
-            .clickable(onClick = onClick),
+            .clickable(
+                onClick = onClick,
+                indication = LocalIndication.current,
+                interactionSource = remember {
+                    MutableInteractionSource()
+                }
+            ),
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
@@ -79,27 +88,31 @@ fun CardItem(
                             horizontalAlignment = Alignment.End
                         ) {
                             Text(
-                                text = card.type.uppercase().orEmpty(),
+                                text = card.type?.uppercase().orEmpty(),
                                 color = Color.White,
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold
                             )
-                            Text(
-                                text = card.status,
-                                color = if (card.status == "ACTIVE") Color(0xFF9ACD32) else Color(0xFFFF0000),
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight.Bold
-                            )
+                            card.status?.let {
+                                Text(
+                                    text = it,
+                                    color = if (card.status == "ACTIVE") Color(0xFF9ACD32) else Color(0xFFFF0000),
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
                         }
                     }
 
-                    Text(
-                        text = card.cardNumber.masked(),
-                        color = Color.White,
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Medium,
-                        letterSpacing = 2.sp
-                    )
+                    card.cardNumber?.let {
+                        Text(
+                            text = it.masked(),
+                            color = Color.White,
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Medium,
+                            letterSpacing = 2.sp
+                        )
+                    }
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -111,12 +124,14 @@ fun CardItem(
                                 color = Color.White.copy(alpha = 0.7f),
                                 fontSize = 8.sp
                             )
-                            Text(
-                                text = card.expiryDate,
-                                color = Color.White,
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.Medium
-                            )
+                            card.expiryDate?.let {
+                                Text(
+                                    text = it,
+                                    color = Color.White,
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.Medium
+                                )
+                            }
                         }
 
                         Column(
@@ -146,12 +161,14 @@ fun CardItem(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = card.holderName,
-                    color = Color(0xFF666666),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium
-                )
+                card.holderName?.let {
+                    Text(
+                        text = it,
+                        color = Color(0xFF666666),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
 
                 Text(
                     text = "VISA",
