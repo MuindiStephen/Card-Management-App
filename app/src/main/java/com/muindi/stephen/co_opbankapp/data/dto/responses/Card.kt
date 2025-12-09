@@ -13,7 +13,7 @@ data class Card(
     val creditLimit: Double,
     val currency: String,
     val currentSpend: Double,
-    val dueDate: String,
+    val dueDate: String? = null,
     val expiryDate: String,
     val holderName: String,
     @PrimaryKey val id: String,
