@@ -3,6 +3,7 @@ package com.muindi.stephen.co_opbankapp.data.dto.responses
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.muindi.stephen.co_opbankapp.data.local.room.converters.WalletListConverter
 
 @Entity(tableName = "cards")
 @TypeConverters(WalletListConverter::class)
