@@ -1,5 +1,11 @@
 package com.muindi.stephen.co_opbankapp.data.dto.responses
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+
+@Entity(tableName = "cards")
+@TypeConverters(WalletListConverter::class)
 data class Card(
     val balance: Double,
     val cardNumber: String,
@@ -9,11 +15,11 @@ data class Card(
     val dueDate: String,
     val expiryDate: String,
     val holderName: String,
-    val id: String,
+    @PrimaryKey val id: String,
     val linkedAccountName: String,
     val name: String,
     val status: String,
     val type: String,
     val userId: String,
-    val wallets: List<Wallet>
+    val wallets: List<Wallet>? = null
 )

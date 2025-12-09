@@ -85,6 +85,7 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.retrofit)
     implementation(libs.logging.interceptor)
+    implementation(libs.converter.moshi)
 
     // dagger hilt
     implementation(libs.hilt.android)

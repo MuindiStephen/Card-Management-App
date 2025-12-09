@@ -1,4 +1,4 @@
-package com.muindi.stephen.co_opbankapp.ui.theme
+package com.muindi.stephen.co_opbankapp.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

@@ -1,17 +1,15 @@
 package com.muindi.stephen.co_opbankapp.data.local.room.dao
 
-import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.muindi.stephen.co_opbankapp.data.dto.responses.Card
+import com.muindi.stephen.co_opbankapp.data.dto.responses.GetUserResponse
 import kotlinx.coroutines.flow.Flow
 
-@Dao
-interface CardDao {
-    @Query("SELECT * FROM cards")
-    fun getAllCards(): Flow<List<Card>>
+interface UserProfileDao {
+    @Query("SELECT * FROM userProfile LIMIT 1")
+    fun getUser(): Flow<GetUserResponse?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCards(cards: List<Card>)
+    suspend fun insertUser(user: GetUserResponse)
 }

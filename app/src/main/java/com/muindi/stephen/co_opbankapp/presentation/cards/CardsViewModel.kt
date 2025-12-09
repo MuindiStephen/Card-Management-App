@@ -1,4 +1,4 @@
-package com.muindi.stephen.co_opbankapp.presentation
+package com.muindi.stephen.co_opbankapp.presentation.cards
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -6,12 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.muindi.stephen.co_opbankapp.domain.repository.CardsRepository
 import com.muindi.stephen.co_opbankapp.domain.utils.Resource
+import com.muindi.stephen.co_opbankapp.presentation.CardsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class CardsViewModel @Inject constructor(
     private val repository: CardsRepository
 ) : ViewModel() {
     private val _state = mutableStateOf(CardsUiState())

@@ -1,4 +1,4 @@
-package com.muindi.stephen.co_opbankapp.ui.theme
+package com.muindi.stephen.co_opbankapp.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

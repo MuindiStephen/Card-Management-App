@@ -2,6 +2,7 @@
 accompanistSystemuicontroller = "0.36.0"
 agp = "8.8.2"
 converterGson = "2.9.0"
+converterMoshi = "3.0.0"
 datastorePreferences = "1.2.0"
 hiltAndroid = "2.57.1"
 hiltAndroidGradlePlugin = "2.57.1"
@@ -48,6 +49,7 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtxVersion" }
 androidx-ui-util-android = { module = "androidx.compose.ui:ui-util-android", version.ref = "uiUtilAndroid" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "converterMoshi" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltAndroidGradlePlugin" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }
