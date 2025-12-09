@@ -62,39 +62,39 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Materia icons
-    implementation("androidx.compose.material:material-icons-core:1.7.8")
+    implementation(libs.androidx.material.icons.core)
     implementation("androidx.compose.material:material-icons-extended:1.7.8")
 
     // navigation compose
-    implementation("androidx.navigation:navigation-compose:2.9.6")
+    implementation(libs.androidx.navigation.compose)
 
     //viewmodel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     // system ui controller
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.36.0")
+    implementation(libs.accompanist.systemuicontroller)
 
     // ui util
-    implementation("androidx.compose.ui:ui-util-android: 1.10.0-rc01")
+    implementation(libs.androidx.ui.util.android)
 
     // datastore
-    implementation("androidx.datastore:datastore-preferences:1.2.0")
+    implementation(libs.androidx.datastore.preferences)
 
     //Networking
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6")
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.logging.interceptor)
 
     // dagger hilt
-    implementation("com.google.dagger:hilt-android:2.57.1")
-    kapt("com.google.dagger:hilt-compiler:2.57.1")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     // hilt navigation compose
-    implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
+    implementation(libs.androidx.hilt.navigation.compose)
 
     //room db
-    implementation("androidx.room:room-ktx:2.8.4")
-    implementation("androidx.room:room-ktx:2.8.4")
-    kapt("androidx.room:room-compiler:2.8.4")
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
 }
