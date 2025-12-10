@@ -1,5 +1,6 @@
 package com.muindi.stephen.co_opbankapp.data.repository
 
+import android.util.Log
 import com.muindi.stephen.co_opbankapp.data.dto.responses.Card
 import com.muindi.stephen.co_opbankapp.data.dto.responses.GetUserResponse
 import com.muindi.stephen.co_opbankapp.data.dto.responses.Transaction
@@ -66,12 +67,19 @@ class CardRepositoryImpl @Inject constructor (
             val localUserInRoomDB = userProfileDao.getUser().firstOrNull()
 
             if (localUserInRoomDB != null) {
+                Log.d("DEBUG_USER", "Loaded user FROM Room: $localUserInRoomDB")
                 return Resource.Data(localUserInRoomDB)
             }
 
             val responseRemoteUser = api.getUser()
             val saveRemoteUserToRoom = responseRemoteUser.user.toGetUserResponseEntity()
+
+            Log.d("DEBUG_USER", "Inserting user into Room: $saveRemoteUserToRoom")
+
             userProfileDao.insertUser(saveRemoteUserToRoom)
+
+            val savedUser = userProfileDao.getUser().firstOrNull()
+            Log.d("DEBUG_USER", "User after insert: $savedUser")
 
             Resource.Data(saveRemoteUserToRoom)
 

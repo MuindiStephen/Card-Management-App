@@ -19,9 +19,6 @@ class UserProfileViewModel @Inject constructor(
     private val _state = MutableStateFlow(UserProfileUiState(isLoading = true))
     val state: StateFlow<UserProfileUiState> = _state
 
-    init {
-        fetchUserDetails()
-    }
 
     fun fetchUserDetails() {
         viewModelScope.launch {

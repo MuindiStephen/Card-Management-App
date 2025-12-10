@@ -3,7 +3,7 @@ package com.muindi.stephen.co_opbankapp.di
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.muindi.stephen.co_opbankapp.data.remote.CoopCardsRemoteService
-import com.muindi.stephen.co_opbankapp.domain.utils.constants.Constants.BASE_URL
+import com.muindi.stephen.co_opbankapp.domain.utils.constants.Constants.getStringBaseUrl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +20,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun providesBaseUrl(): String {
-        return BASE_URL
+        return getStringBaseUrl()
     }
 
     private val httpLoggingInterceptor = HttpLoggingInterceptor()
@@ -40,7 +40,7 @@ object NetworkModule {
 //        gson: Gson
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(getStringBaseUrl())
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
