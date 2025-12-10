@@ -6,6 +6,7 @@ import com.muindi.stephen.co_opbankapp.data.dto.responses.Transaction
 import com.muindi.stephen.co_opbankapp.data.local.room.dao.CardDao
 import com.muindi.stephen.co_opbankapp.data.local.room.dao.TransactionsDao
 import com.muindi.stephen.co_opbankapp.data.local.room.dao.UserProfileDao
+import com.muindi.stephen.co_opbankapp.data.mappers.toGetUserResponseEntity
 import com.muindi.stephen.co_opbankapp.data.remote.CoopCardsRemoteService
 import com.muindi.stephen.co_opbankapp.domain.repository.CardsRepository
 import com.muindi.stephen.co_opbankapp.domain.utils.Resource
@@ -61,16 +62,21 @@ class CardRepositoryImpl @Inject constructor (
 
     override suspend fun getUser(): Resource<GetUserResponse> {
         return try {
-            val localUser = userProfileDao.getUser().firstOrNull()
-            if (localUser != null) {
-                Resource.Data(localUser)
-            } else {
-                val user = api.getUser()
-                userProfileDao.insertUser(user)
-                Resource.Data(user)
+
+            val localUserInRoomDB = userProfileDao.getUser().firstOrNull()
+
+            if (localUserInRoomDB != null) {
+                return Resource.Data(localUserInRoomDB)
             }
+
+            val responseRemoteUser = api.getUser()
+            val saveRemoteUserToRoom = responseRemoteUser.user.toGetUserResponseEntity()
+            userProfileDao.insertUser(saveRemoteUserToRoom)
+
+            Resource.Data(saveRemoteUserToRoom)
+
         } catch (e: Exception) {
-            Resource.Error(e.localizedMessage ?: "Unexpected error occurred")
+            Resource.Error(e.localizedMessage ?: "Unexpected error has occurred.")
         }
     }
 }

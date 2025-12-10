@@ -73,12 +73,12 @@ fun UserProfileScreen(
     ) {
         Surface(
             modifier = Modifier.fillMaxWidth(),
-            color = Color(0xFF2E7D32)
+            color = Color(0xFF2E7D32),
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(top = 32.dp, bottom = 16.dp, start = 16.dp, end = 16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -160,22 +160,22 @@ fun UserProfileScreen(
 
                     ProfileInformationSection(
                         label = "Street",
-                        value = user.address.street
+                        value = user.street
                     )
 
                     ProfileInformationSection(
                         label = "City",
-                        value = user.address.city
+                        value = user.city
                     )
 
                     ProfileInformationSection(
                         label = "Country",
-                        value = user.address.country
+                        value = user.country
                     )
 
                     ProfileInformationSection(
                         label = "Postal Code",
-                        value = user.address.postalCode
+                        value = user.postalCode
                     )
                 }
             }

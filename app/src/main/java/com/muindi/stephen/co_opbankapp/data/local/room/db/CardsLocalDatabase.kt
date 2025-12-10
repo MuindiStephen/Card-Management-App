@@ -11,7 +11,7 @@ import com.muindi.stephen.co_opbankapp.data.local.room.dao.CardDao
 import com.muindi.stephen.co_opbankapp.data.local.room.dao.TransactionsDao
 import com.muindi.stephen.co_opbankapp.data.local.room.dao.UserProfileDao
 
-@Database(entities = [Card::class, Transaction::class, GetUserResponse::class], version = 4)
+@Database(entities = [Card::class, Transaction::class, GetUserResponse::class], version = 5)
 @TypeConverters(WalletListConverter::class)
 abstract class CardsLocalDatabase : RoomDatabase() {
     abstract fun cardDao(): CardDao
